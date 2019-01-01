@@ -2,3 +2,7 @@
 arcade:
   timezone: "Europe/Brussels"
   user: pi
+ap:
+  channel: 7
+  ssid: "CoderDojoArcade"
+  password: "D0j0B3C00l!"

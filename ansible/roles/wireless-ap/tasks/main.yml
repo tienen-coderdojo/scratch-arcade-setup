@@ -1,0 +1,36 @@
+---
+- name: 'Install AP tools'
+  apt:
+    name: "{{ item }}"
+    install_recommends: no
+  with_items:
+    - 'hostapd'
+    - 'dnsmasq'
+
+- name: 'Setup static IP for access point'
+  blockinfile:
+    dest: "/etc/dhcpcd.conf"
+    block: |
+      interface wlan0
+        static ip_address=192.168.0.10/24
+        nohook wpa_supplicant
+    backup: yes
+
+- name: 'Configure dnsmasq'
+  copy:
+    src: "./dnsmasq.conf"
+    dest: "/etc/dnsmasq.conf"
+    mode: 0644
+
+- name: 'Configure hostapd'
+  template:
+    src: "./hostapd.conf.j2"
+    dest: "/etc/hostapd/hostapd.conf"
+    mode: 0644
+    force: yes
+
+- name: 'Setup hostapd default config'
+  lineinfile:
+    dest: /etc/default/hostapd
+    regexp: '^#?DAEMON_CONF='
+    line: 'DAEMON_CONF="/etc/hostapd/hostapd.conf"'

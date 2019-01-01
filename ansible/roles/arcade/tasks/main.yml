@@ -1,4 +1,8 @@
 ---
+- name: 'Setup timezone'
+  timezone:
+    name: "{{ arcade.timezone }}"
+
 - name: 'Install minimal X Server'
   apt:
     name: "{{ item }}"

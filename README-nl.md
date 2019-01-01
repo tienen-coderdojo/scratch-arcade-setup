@@ -151,3 +151,28 @@ sudo reboot
 
 En dan zou de Raspberry Pi automatisch moeten opstarten met Chromium in kiosk
 mode op https://www.coderdojobelgium.be (let op : het opstarten kan even duren)...
+
+## Optioneel : de Raspberry Pi als wireless access point instellen
+
+Aangezien de Raspberry Pi in ons geval in een echte arcade kast zal zitten en
+we het installeren van updates zo makkelijk mogelijk willen houden hebben we
+deze ingesteld als wireless access point. Op die manier kunnen we via de wireless
+connectie met een laptop snel de nodige bestanden overzetten.
+
+Deze extra setup uitvoeren kan via volgend commando (je kan de wireless
+settings zoals ssid, wireless channel en password hiervoor aanpassen in de
+vars.yml file) :
+```
+ansible-playbook -s -i hosts wireless-ap.yml
+```
+
+Eens deze setup voltooid kan je de Raspberry Pi best herstarten en vanaf dan zou
+je met SSH moeten connecteren als je wireless geconnecteerd bent op de ingestelde
+SSID :
+```
+ssh pi@192.168.0.10
+```
+
+**OPGELET:** Eens de Raspberry Pi is ingesteld als access point heeft die zelf
+geen toegang meer tot het Internet via de wireless connectie (maw op een Raspberry
+Pi 3 model A+ heb je dan geen Internet meer) ...
