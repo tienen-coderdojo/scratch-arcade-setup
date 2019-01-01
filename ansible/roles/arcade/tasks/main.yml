@@ -1,0 +1,46 @@
+---
+- name: 'Install minimal X Server'
+  apt:
+    name: "{{ item }}"
+    install_recommends: no
+  with_items:
+    - 'xserver-xorg'
+    - 'x11-xserver-utils'
+    - 'xinit'
+    - 'openbox'
+
+- name: 'Install chromium browser'
+  apt:
+    name: "chromium-browser"
+    install_recommends: no
+
+- name: 'Start X Server on user login'
+  become_user: "{{ arcade.user }}"
+  copy:
+    src: "./config/bash_profile"
+    dest: "/home/{{ arcade.user }}/.bash_profile"
+    mode: 0644
+
+- name: 'Create openbox config folder'
+  become_user: "{{ arcade.user }}"
+  file:
+    path: "/home/{{ arcade.user }}/.config/openbox"
+    state: directory
+    mode: 0755
+
+- name: 'Setup openbox autostart'
+  become_user: "{{ arcade.user }}"
+  copy:
+    src: "./config/openbox-autostart"
+    dest: "/home/{{ arcade.user }}/.config/openbox/autostart"
+    mode: 0644
+
+- name: 'Copy utility scripts'
+  become_user: "{{ arcade.user }}"
+  copy:
+    src: "./scripts/"
+    dest: "/home/{{ arcade.user }}/scripts/"
+    mode: 0755
+
+- name: 'Enable single user autologin'
+  shell: "/home/{{ arcade.user }}/scripts/single-user-autologin.sh"

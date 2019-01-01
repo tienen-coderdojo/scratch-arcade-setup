@@ -1,0 +1,13 @@
+---
+- name: 'Update apt cache'
+  apt: update_cache=yes
+  become: yes
+
+- name: 'Upgrade apt dist'
+  apt: upgrade=dist
+  become: yes
+
+- name: 'Set timezone'
+  timezone:
+    name: "{{ arcade.timezone }}"
+  become: yes

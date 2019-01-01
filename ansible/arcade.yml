@@ -1,0 +1,8 @@
+# Configure Raspberry Pi
+- name: Configure Raspberry Pi
+  hosts: pi
+  vars_files:
+    - vars.yml
+  roles:
+    - common
+    - arcade

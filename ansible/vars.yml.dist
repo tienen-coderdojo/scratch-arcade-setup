@@ -1,0 +1,4 @@
+---
+arcade:
+  timezone: "Europe/Brussels"
+  user: pi

@@ -100,3 +100,54 @@ Je kan hier simpelweg **yes** antwoorden om de connectie te openen.
 
 Daarna zou je de **pi@raspberrypi:~ $** prompt moeten zien en kan je de volgende
 stappen van de setup uitvoeren.
+
+## Installatie van de Scratch arcade setup
+
+**OPMERKING:** Alle volgende commando's dien je uit te voeren in een SSH sessie op
+de Raspberry Pi (je mag het uiteraard ook vanop een andere machine uitvoeren als
+je dat wil, maar dan zal je de configuratie bestanden wel moeten wijzigen en
+indien je geen Debian based Linux machine gebruikt zal je ook andere commando's
+moeten uitvoeren).
+
+Allereerst moeten er wat tools geïnstalleerd worden die nodig zijn voor de setup.
+Voer daarvoor onderstaand commando uit :
+```
+sudo apt-get install -y ansible git sshpass
+```
+
+Na de installatie van Ansible kan je de scratch-arcade-setup van onze GitHub
+repository installeren. Voer het volgende commando uit :
+```
+git clone https://github.com/tienen-coderdojo/scratch-arcade-setup.git
+```
+
+Hierna zou er een folder scratch-arcade-setup in de huidige folder moeten staan.
+Navigeer naar de ansible folder (**cd scratch-arcade-setup/ansible**) en kopieer
+daar de **hosts.dist** en **vars.yml.dist** bestanden naar respectievelijk
+**hosts** en **vars.yml**. Dit kan d.m.v. :
+```
+cp hosts.dist hosts
+cp vars.yml.dist vars.yml
+```
+
+Je kan deze laatste bestanden indien nodig nog aanpassen alvorens de volgende
+stappen uit te voeren (meer info volgt later).
+
+## Geautomatiseerde deel van de setup
+
+Het voorgaande was het "moeilijke" stuk van de installatie, de rest van de setup
+is voor het grootste stuk geautomatiseerd via Ansible.
+
+Voer nu het volgende commando uit :
+```
+./setup-arcade.sh
+```
+
+Dit zal alle vereiste software installeren. Na de installatie volstaat het om de
+Raspberry Pi te rebooten via :
+```
+sudo reboot
+```
+
+En dan zou de Raspberry Pi automatisch moeten opstarten met Chromium in kiosk
+mode op https://www.coderdojobelgium.be (let op : het opstarten kan even duren)...
