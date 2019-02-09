@@ -18,6 +18,15 @@
     name: "chromium-browser"
     install_recommends: no
 
+- name: 'Install chromium mods (Flash support)'
+  apt:
+    name: "rpi-chromium-mods"
+
+- name: 'Allow Flash movies on localhost'
+  copy:
+    src: "./config/allow-local-flash.json"
+    dest: "/etc/chromium-browser/policies/managed/allow-local-flash.json"
+
 - name: 'Start X Server on user login'
   become_user: "{{ arcade.user }}"
   copy:
@@ -46,5 +55,22 @@
     dest: "/home/{{ arcade.user }}/scripts/"
     mode: 0755
 
+- name: 'Create html folder to store arcade files'
+  become_user: "{{ arcade.user }}"
+  file:
+    path: "/home/{{ arcade.user }}/html"
+    state: directory
+
 - name: 'Enable single user autologin'
   shell: "/home/{{ arcade.user }}/scripts/single-user-autologin.sh"
+
+- name: 'Override rc.local'
+  copy:
+    src: "rc.local"
+    dest: "/etc/rc.local"
+    mode: 0755
+
+- name: 'Install nginx'
+  apt:
+    name: "nginx"
+    install_recommends: no

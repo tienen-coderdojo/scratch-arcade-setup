@@ -30,7 +30,7 @@ je doorgaans online kopen in een set met joystick en arcade knoppen.
 vb. https://www.amazon.de/dp/B07BN97FN8
 
 Dit alternatief is iets onhandiger omdat er extra software vereist is om de
-invoer van de  spelbesturing om te zetten naar toetsenbord invoer, maar werkt
+invoer van de spelbesturing om te zetten naar toetsenbord invoer, maar werkt
 ook wel goed.
 
 Tip: Als je deze via Amazon zou bestellen let er dan op dat het een "Fulfilled
