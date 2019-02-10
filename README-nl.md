@@ -98,16 +98,19 @@ Are you sure you want to continue connecting (yes/no)?
 ```
 Je kan hier simpelweg **yes** antwoorden om de connectie te openen.
 
-Daarna zou je de **pi@raspberrypi:~ $** prompt moeten zien en kan je de volgende
-stappen van de setup uitvoeren.
+Je zou nu de default prompt moeten zien :
+```
+pi@raspberrypi:~ $
+```
+
+Als alles ok is kan je doorgaan met de rest van de installatie.
+
 
 ## Installatie van de Scratch arcade setup
 
-**OPMERKING:** Alle volgende commando's dien je uit te voeren in een SSH sessie op
-de Raspberry Pi (je mag het uiteraard ook vanop een andere machine uitvoeren als
-je dat wil, maar dan zal je de configuratie bestanden wel moeten wijzigen en
-indien je geen Debian based Linux machine gebruikt zal je ook andere commando's
-moeten uitvoeren).
+**OPMERKING:** Alle volgende commando's dien je uit te voeren op de Raspberry Pi.
+Dat kan via een console en keyboard geconnecteerd op de Raspberry Pi of vanop
+afstand via een SSH sessie.
 
 Allereerst moeten er wat tools geïnstalleerd worden die nodig zijn voor de setup.
 Voer daarvoor onderstaand commando uit :
@@ -143,14 +146,17 @@ Voer nu het volgende commando uit :
 ./setup-arcade.sh
 ```
 
-Dit zal alle vereiste software installeren. Na de installatie volstaat het om de
-Raspberry Pi te rebooten via :
+Dit zal alle vereiste software installeren. Als de installatie voltooid is
+kan je de benodigde HTML bestanden kopiëren naar de /home/pi/html folder
+(meer informatie volgt nog).
+
+Tenslotte kan je de Raspberry Pi herstarten om na te gaan of alles werkt via :
 ```
 sudo reboot
 ```
 
 En dan zou de Raspberry Pi automatisch moeten opstarten met Chromium in kiosk
-mode op https://www.coderdojobelgium.be (let op : het opstarten kan even duren)...
+mode op http://localhost/index.html (let op : het opstarten kan even duren)...
 
 ## Optioneel : de Raspberry Pi als wireless access point instellen
 
@@ -174,5 +180,4 @@ ssh pi@192.168.0.10
 ```
 
 **OPGELET:** Eens de Raspberry Pi is ingesteld als access point heeft die zelf
-geen toegang meer tot het Internet via de wireless connectie (maw op een Raspberry
-Pi 3 model A+ heb je dan geen Internet meer) ...
+geen toegang meer tot het Internet via de wireless connectie!
