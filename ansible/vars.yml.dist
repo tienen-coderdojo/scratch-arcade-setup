@@ -2,6 +2,7 @@
 arcade:
   timezone: "Europe/Brussels"
   user: pi
+  install_picade: true
 ap:
   channel: 7
   ssid: "CoderDojoArcade"

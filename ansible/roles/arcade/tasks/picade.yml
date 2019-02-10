@@ -1,0 +1,17 @@
+---
+- name: 'Clone Picade HAT GitHub repository'
+  git:
+    repo: "https://github.com/pimoroni/picade-hat.git"
+    dest: "/opt/picade-hat"
+    force: yes
+
+- name: 'Patch Picade Hat driver to use our keys'
+  patch:
+    src: "./patches/picade-keys.patch"
+    basedir: "/opt/picade-hat"
+    strip: 1
+
+- name: 'Install Picade Hat driver'
+  shell: "./install.sh"
+  args:
+    chdir: "/opt/picade-hat"
