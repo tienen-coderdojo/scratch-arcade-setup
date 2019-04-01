@@ -1,0 +1,17 @@
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+
+  root /home/pi/html;
+
+  index index.html;
+
+  server_name _;
+
+  location / {
+    try_files $uri $uri/ =404;
+    # Disable caching
+    add_header Cache-Control no-cache;
+    expires 1s;
+  }
+}

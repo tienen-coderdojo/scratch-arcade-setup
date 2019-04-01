@@ -75,6 +75,13 @@
     name: "nginx"
     install_recommends: no
 
+- name: 'Copy nginx config'
+  copy:
+    src: "./config/nginx/default"
+    dest: "/etc/nginx/sites-enabled/default"
+    mode: 0755
+  notify: reload nginx
+  
 - name: 'Install Picade driver'
   include: 'picade.yml'
   when: arcade.install_picade|default(false)|bool
